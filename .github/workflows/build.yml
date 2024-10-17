@@ -23,10 +23,16 @@ jobs:
           ESLINT_USE_FLAT_CONFIG: false
         run: yarn lint
 
+      - name: Login to docker hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+
       - name: Building the docker image
         uses: docker/build-push-action@v5
         with:
           context: .
           file: ./Dockerfile
-          tags: levi224/webapp
-          push: false
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/webapp
+          push: true
