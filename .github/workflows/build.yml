@@ -9,3 +9,14 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
+
+      - name: Installing nodejs
+        uses: actions/setup-node@v3
+        with:
+          node-version: "20"
+
+      - name: Installing the dependencies using yarn
+        run: yarn install
+
+      - name: Using lint
+        run: yarn lint
