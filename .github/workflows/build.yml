@@ -22,3 +22,11 @@ jobs:
         env:
           ESLINT_USE_FLAT_CONFIG: false
         run: yarn lint
+
+      - name: Building the docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./Dockerfile
+          tags: levi224/webapp
+          push: false
